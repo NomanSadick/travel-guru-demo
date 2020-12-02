@@ -11,13 +11,12 @@
    
 }
 
-.header .logo{
+.nav .logo{
   height: 56px;
   width: 120.26119995117188px;
   left: 135px;
   top: 35px;
   border-radius: 0px;
-  color: #ffffff;
   
 }
 
@@ -46,11 +45,8 @@
     left: 335px;
     top: 39px;
     border-radius: 5px;
-    background: rgba(255, 255, 255, 0.2);
     border: 1px solid #FFFFFF;
     box-sizing: border-box;
-    border-radius: 5px;
-    color: #ffffff;
   }
   .btn-login{
     background-color: #F9A51A;
@@ -62,6 +58,7 @@
     padding: 12px, 29px, 12px, 29px;
 
   }
+
   .slider-img{
     height: 416px;
     width: 270px;
@@ -69,23 +66,17 @@
     top: 236px;
     border-radius: 20px;
 }
-.title{
-    height: 116px;
-    width: 378.52630615234375px;
+.name{
+   
     left: 135px;
     top: 236px;
     border-radius: nullpx; 
     color: #ffffff;
+    font-size: 90px !important;
+    
   
 }
-.header-content{
-    width: 455px;
-    height: 80px;
-    left: 135px;
-    top: 350px;
-    color: #ffffff;
-  
-}
+
 .btn-booking {
   display: flex;
   flex-direction: row;
@@ -100,12 +91,26 @@
   border-radius: 5px;
   
 }
+.carousel-caption {
+  position: absolute;
+  right: 15%;
+  bottom: 20px;
+  left: 15%;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 300px;
+  
+}
+
 .slider-img{
   position: absolute;
-width: 270px;
-height: 416px;
-left: 635px;
-top: 236px;
+  width: 270px;
+  height: 416px;
+  left: 635px;
+  top: 236px;
 }
 .right-title{
   position: absolute;
@@ -116,7 +121,9 @@ top: 236px;
   font-size: 36px;
 line-height: 43px;
 }
-.bg-color{
+.carousel{
   margin-top: 200px;
 }
+
+
 
