@@ -16,7 +16,7 @@
         "name": "Sundarbans",
         "image": "https://i.ibb.co/0tdyCjD/sundorbans.png",
         "detail": "Sundarbans is a city, fishing port, tourism centre and district headquarters in southeastern Bangladesh. It is famous mostly for its long natural sandy beach, and it ..."
-    }
+    },
     ]
     
     export default travelLocation;

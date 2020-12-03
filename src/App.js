@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 import DetailsPlace from './Components/DetailsPlace/DetailsPlace';
 import { createContext, useState } from 'react';
+import Login from './Components/Login/Login';
+
 
 export const travelContext = createContext()
 
@@ -19,19 +21,22 @@ function App() {
 
   return (
     <travelContext.Provider value={[travelInformation, setTravelInformation]}>
-    <Router>
-      
-      <Switch>
+      <Router>
 
-        <Route path="/details/:id">
-          <DetailsPlace></DetailsPlace>
-        </Route>
-        <Route path="/">
-        <Header></Header>
-        </Route>
-      </Switch>
+        <Switch>
 
-    </Router>
+          <Route path="/details/:id">
+            <DetailsPlace></DetailsPlace>
+          </Route>
+          <Route path="/login">
+            <Login></Login>
+          </Route>
+          <Route path="/">
+            <Header></Header>
+          </Route>
+        </Switch>
+
+      </Router>
     </travelContext.Provider>
   );
 }

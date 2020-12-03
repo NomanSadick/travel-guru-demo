@@ -1,16 +1,17 @@
 import React, { useContext } from 'react';
 import './Header.css';
-import header from '../../images/header.jpg';
+
 
 import { Link } from "react-router-dom";
 
-import logo from '../../images/Logo.png'
+
 // import { Link } from '@material-ui/core';
 import Container from 'react-bootstrap/Container'
 import { Carousel, Col, Row, } from 'react-bootstrap';
 import travelLocation from '../../fakeData/travelLocation'
 
 import { travelContext } from '../../App';
+import Navber from '../Navber/Navber';
 
 
 const Header = () => {
@@ -18,38 +19,9 @@ const Header = () => {
     return (
 
         <Container>
-            <div style={{ backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${header})` }} className="header">
+            <div>
 
-                <nav className="nav">
-                    <ul>
-                        <li>
-                            <img className="logo" src={logo} alt="" />
-                        </li>
-                        <li>
-                            <input className="search" type="search" name="" id="" placeholder="Search Your Destination" />
-                        </li>
-                        <li>
-                            <Link to="/news">News</Link>
-                        </li>
-                        <li>
-                            <Link to="/destination">Destination</Link>
-                        </li>
-
-                        <li>
-                            <Link to="/blog">Blog</Link>
-                        </li>
-                        <li>
-                            <Link to="/contracts">Contracts</Link>
-                        </li>
-                        <li>
-                            <Link to="/login">
-                                <button className="btn-login">Login</button>
-
-                            </Link>
-
-                        </li>
-                    </ul>
-                </nav>
+                <Navber></Navber>
 
                 <Carousel className="carousel">
                     {travelLocation.map(item =>
@@ -57,19 +29,19 @@ const Header = () => {
 
                             <Row>
 
-                                <Col>
+                                <Col md={8}>
                                     <Carousel.Caption clasName="caption">
-                                        <h4 clasName="name">{item.name}</h4>
+                                        <h2 clasName="name">{item.name}</h2>
                                         <p clasName="detail">{item.detail}</p>
 
                                     </Carousel.Caption>
-                                    <br />
+
                                     <Link onClick={() => setTravelInformation(item)} to={'/details/' + item.id}>
                                         <button className="btn-booking">Booking</button>
                                     </Link>
                                 </Col>
 
-                                <Col>
+                                <Col md={4}>
 
                                     <div>
                                         <img clssName="slider-img" src={item.image} fluid alt="" />
