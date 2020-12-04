@@ -11,6 +11,7 @@ import {
 import DetailsPlace from './Components/DetailsPlace/DetailsPlace';
 import { createContext, useState } from 'react';
 import Login from './Components/Login/Login';
+import HotelBooking from './Components/HotelBooking/HotelBooking';
 
 
 export const travelContext = createContext()
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route path="/login">
             <Login></Login>
+          </Route>
+          <Route path="/booking">
+            <HotelBooking></HotelBooking>
           </Route>
           <Route path="/">
             <Header></Header>

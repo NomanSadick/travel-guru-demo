@@ -44,3 +44,40 @@
     color: #F9A51A;
 
 }
+
+
+
+.login-or {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.login-or span {
+    padding: 0 10px;
+}
+
+.login-or div {
+    width: 125px;
+    height: 1px;
+    background-color: #000000;
+}
+
+.login-with {
+    display: flex;
+    border: 1px solid #000;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    margin: 0 auto;
+    padding: 5px;
+    border-radius: 50px;
+    margin-top: 10px;
+}
+.login-image {
+    width: 35px;
+}
+.login-with p { 
+    margin: 0;
+}

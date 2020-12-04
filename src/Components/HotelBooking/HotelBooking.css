@@ -1,0 +1,20 @@
+.container{
+  
+}
+.booking{
+    width: 50%;
+    display: flex;
+}
+.booking img{
+   width: 200px;
+   height: 180px;
+   border-radius: 4px;
+    
+}
+.booking-content{
+    padding-left: 10px;
+    margin-top: 30px;
+}
+.google-map{
+    
+}
