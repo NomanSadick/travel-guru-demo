@@ -10,10 +10,19 @@ import firebaseConfig from './firebase.config';
 
 
 const Login = () => {
+
     if (firebase.apps.length === 0) {
         firebase.initializeApp(firebaseConfig);
     }
 
+    const [user, setUser] = useState({
+        isSignedIn:false,
+        firstName:'',
+        lastName:'',
+        email:'',
+        password:'',
+        photo:''
+      })
 
     const [newUser, setNewUser] = useState(false)
     const [checked, setChecked] = React.useState(false);
@@ -37,18 +46,53 @@ const Login = () => {
             });
     }
 
+    const handleSubmit = () =>{
+
+    }
+
+    const handleBlur = (e) =>{
+        console.log(e.target.name, e.target.value);
+
+        let isFieldValid = true;
+        if(e.target.name === 'email'){
+            
+            isFieldValid = /(.+)@(.+){2,}\.(.+){2,}/.test(e.target.value); 
+            
+        }
+
+        if(e.target.name === 'password'){
+            const isPasswordValid  = e.target.value.length > 8;
+            const passwordHasNumber  = /\d/.test(e.target.value);
+            isFieldValid = isPasswordValid && passwordHasNumber;
+        }
+
+
+        if(e.target.name === 'confirm password'){
+            const isPasswordValid  = e.target.value.length > 8;
+            const passwordHasNumber  = /\d/.test(e.target.value);
+            isFieldValid = isPasswordValid && passwordHasNumber;
+        }
+
+        if(isFieldValid){
+            const newUserInfo = {...user};
+             newUserInfo[e.target.name] = e.target.value;
+             setUser(newUserInfo);
+        }
+    }
+
     return (
 
         <div>
 
-            <div className="login-container">
+           <form onSubmit={handleSubmit}>
+           <div className="login-container">
                 {newUser ?
 
                     <div className="login-field">
                         <h3>Login</h3>
-                        <TextField className="text" id="standard-basic" label="First Name" />
+                        <TextField className="text" name="email" onBlur={handleBlur} id="standard-basic" type="email" label="User or Email" required/>
                         <br />
-                        <TextField className="text" id="standard-basic" label="Last Name" />
+                        <TextField className="text" name="password" onBlur={handleBlur} id="standard-basic" type="password" label="Password" required/>
                         <br />
                         <div className="remember">
                             <div>
@@ -62,25 +106,24 @@ const Login = () => {
                                 <p>Forgot password</p>
                             </div>
                         </div>
-                        <Button className="btn" variant="contained" color="secondary">Login</Button>
-
+                        <input type="button" value="LOGIN" className="btn" color="secondary"/>
                         <p>Don't have an account? <a href="#login" onClick={() => setNewUser(!newUser)}>Create an account</a></p>
                     </div>
                     :
 
                     <div className="login-field">
                         <h3>Create an account</h3>
-                        <TextField className="text" id="standard-basic" label="First Name" />
+                        <TextField className="text" name="firstName" onBlur={handleBlur} id="standard-basic" type="name" label="First Name" required/>
                         <br />
-                        <TextField className="text" id="standard-basic" label="Last Name" />
+                        <TextField className="text" name="lastName" onBlur={handleBlur} id="standard-basic" type="name"  label="Last Name" required/>
                         <br />
-                        <TextField className="text" id="standard-basic" label="User or Email" />
+                        <TextField className="text" name="email" onBlur={handleBlur} id="standard-basic" type="email" label="User or Email" required/>
                         <br />
-                        <TextField className="text" id="standard-basic" label="Password" />
+                        <TextField className="text" name="password" onBlur={handleBlur} id="standard-basic" type="password" label="Password" required/>
                         <br />
-                        <TextField className="text" id="standard-basic" label="Confirm Password" />
+                        <TextField className="text" name="confirm password" onBlur={handleBlur} id="standard-basic" type="password" label="Confirm Password" required/>
                         <br />
-                        <Button className="btn" variant="contained" color="secondary">Create an account</Button>
+                        <input type="button" value="CREATE AN ACCOUNT" className="btn" color="secondary"/>
                         <p>Already have an account? <a href="#login" onClick={() => setNewUser(!newUser)}>Login</a> </p>
                     </div>
 
@@ -98,6 +141,7 @@ const Login = () => {
                     <div></div>
                 </div>
 
+           </form>
         </div>
     );
 };
