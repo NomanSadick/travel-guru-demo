@@ -34,8 +34,8 @@ const Login = () => {
     const googleProvider = new firebase.auth.GoogleAuthProvider();
     const fbProvider = new firebase.auth.FacebookAuthProvider();
     const handleGoogleSignIn = () => {
-        
-        
+
+
 
         firebase.auth().signInWithPopup(googleProvider)
             .then(res => {
@@ -49,15 +49,15 @@ const Login = () => {
             });
     }
 
-    const handleFbSignIn = () =>{
-        
-        firebase.auth().signInWithPopup(fbProvider).then(function(result) {
+    const handleFbSignIn = () => {
+
+        firebase.auth().signInWithPopup(fbProvider).then(function (result) {
             // This gives you a Facebook Access Token. You can use it to access the Facebook API.
             var token = result.credential.accessToken;
             // The signed-in user info.
             var user = result.user;
-            console.log("Fb user after sign in",user);
-          }).catch(function(error) {
+            console.log("Fb user after sign in", user);
+        }).catch(function (error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -66,7 +66,7 @@ const Login = () => {
             // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
             // ...
-          });
+        });
     }
 
 
@@ -102,8 +102,19 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         console.log(user.email && user.password);
+        
         if (user.email && user.password) {
             console.log('Submitting');
+            firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+            .then((user) => {
+                // Signed in 
+                // ...
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // ..
+            });
         }
         e.preventDefault();
     }
@@ -135,7 +146,7 @@ const Login = () => {
                                     <p>Forgot password</p>
                                 </div>
                             </div>
-                            <input type="button" value="LOGIN" className="btn" color="secondary" />
+                            <input type="submit" value="LOGIN" className="btn" color="secondary" />
                             <p>Don't have an account? <a href="#login" onClick={() => setNewUser(!newUser)}>Create an account</a></p>
                         </div>
                         :
@@ -152,7 +163,7 @@ const Login = () => {
                             <br />
                             <TextField className="text" name="confirmPassword" onBlur={handleBlur} id="standard-basic" type="password" label="Confirm Password" required />
                             <br />
-                            <input type="button" value="CREATE AN ACCOUNT" className="btn" color="secondary" />
+                            <input type="submit" value="CREATE AN ACCOUNT" className="btn" color="secondary" />
                             <p>Already have an account? <a href="#login" onClick={() => setNewUser(!newUser)}>Login</a> </p>
                         </div>
                     }
@@ -161,15 +172,15 @@ const Login = () => {
 
             </div>
             <p className="login-or"><div></div><span>Or</span><div></div></p>
-            <div className="login-with">
+            <div className="login-with" onClick={handleFbSignIn}>
                 <img className="login-image" src={facebook} alt="Facebook" />
-                
-                <button onClick={handleFbSignIn}><p>Login with Facebook</p></button>
+
+                <p>Login with Facebook</p>
                 <div></div>
             </div>
-            <div className="login-with">
+            <div className="login-with" onClick={handleGoogleSignIn}>
                 <img className="login-image" src={google} alt="Facebook" />
-                <button onClick={handleGoogleSignIn}><p>Login with Google</p></button>
+                <p>Login with Google</p>
                 <div></div>
             </div>
 

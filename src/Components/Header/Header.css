@@ -1,9 +1,9 @@
 .slider-img{
-    height: 416px;
-    width: 270px;
-    left: 635px;
-    top: 236px;
-    border-radius: 20px;
+    height: 416px !important;
+    width: 270px !important;
+    left: 635px !important;
+    top: 236px !important;
+    border-radius: 20px !important;
 }
 .name{
     color: #ffffff;
@@ -73,3 +73,19 @@
 .carousel{
   margin-top: 200px;
 }
+.carousel-indicators {
+  bottom: 203px !important;
+  margin: 0 !important;
+  left: 500px !important;
+  right: auto !important;
+  border-radius: 10px !important;
+  margin: 1px 3px !important;
+  height: 10px !important;
+  max-width: 10px !important;
+  border: 1px solid #FFF !important;
+  background-color: transparent !important;
+  
+}
+
+
+
