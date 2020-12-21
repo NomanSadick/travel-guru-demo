@@ -6,9 +6,9 @@
     border-radius: 20px !important;
 }
 .name{
-    color: #ffffff;
-    text-transform: uppercase;
-    font-size: 40px;
+    color: #ffffff !important;
+    text-transform: uppercase !important;
+    font-size: 40px !important;
     color: #ffffff;
     
 }
@@ -38,6 +38,7 @@
   background: #F9A51A;
   border-radius: 5px;
   margin-top: -250px;
+  border: none;
   
 }
 .carousel-caption {
@@ -73,19 +74,14 @@
 .carousel{
   margin-top: 200px;
 }
-.carousel-indicators {
-  bottom: 203px !important;
-  margin: 0 !important;
-  left: 500px !important;
-  right: auto !important;
-  border-radius: 10px !important;
-  margin: 1px 3px !important;
-  height: 10px !important;
-  max-width: 10px !important;
-  border: 1px solid #FFF !important;
-  background-color: transparent !important;
-  
+
+.carousel-indicators li {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 100% !important;
+
 }
+
 
 
 
