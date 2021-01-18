@@ -1,5 +1,5 @@
 import { TextField, Button, Checkbox } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Navber from '../Navber/Navber';
 import './Login.css'
 import facebook from "../../images/fb.png";
@@ -7,10 +7,28 @@ import google from "../../images/google.png";
 import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from './firebase.config';
-
+import { travelContext } from '../../App';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import logo from '../../images/Logo.png'
 
 const Login = () => {
+    const [travelInformation, setTravelInformation] = useContext(travelContext);
+    const history = useHistory()
+    const location = useLocation()
+    const { from } = location.state || { from: { pathname: "/" } };
+    
 
+    const handleSignOut = () => {
+        firebase.auth().signOut().then(function () {
+            setTravelInformation({
+                ...travelInformation,
+                isSignedIn: false,
+                displayName: ""
+            });
+        }).catch(function (error) {
+            console.log(error)
+        });
+    }
     if (firebase.apps.length === 0) {
         firebase.initializeApp(firebaseConfig);
     }
@@ -33,20 +51,28 @@ const Login = () => {
     }
     const googleProvider = new firebase.auth.GoogleAuthProvider();
     const fbProvider = new firebase.auth.FacebookAuthProvider();
-    const handleGoogleSignIn = () => {
-
-
-
+    const handleGoogleSignIn = (e) => {
         firebase.auth().signInWithPopup(googleProvider)
-            .then(res => {
-                console.log(res);
+            .then(result => {
+                const {displayName, email} = result.user;
+                const signInUser = {
+                    name: displayName,
+                    email
+                }
+                setTravelInformation(signInUser)
+                history.replace(from)
+               
+               
             })
+            
             .catch(err => {
                 var errorCode = err.code;
                 var errorMessage = err.message;
                 console.log(errorCode, errorMessage);
 
             });
+            
+        e.preventDefault();
     }
 
     const handleFbSignIn = () => {
@@ -102,29 +128,71 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         console.log(user.email && user.password);
-        
+
         if (user.email && user.password) {
             console.log('Submitting');
             firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-            .then((user) => {
-                // Signed in 
-                // ...
-            })
-            .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // ..
-            });
+                .then((user) => {
+
+                    const userName = user.displayName;
+                    setTravelInformation({
+                        ...travelInformation,
+                        isSignedIn: true,
+                        displayName: userName,
+                    })
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // ..
+                });
         }
         e.preventDefault();
     }
 
+
     return (
 
         <div>
+            <nav className="nav">
+                <ul>
+                    <li>
+                        <img className="logo" src={logo} alt="" />
+                    </li>
+                    <li>
+                        <Link to="/news">News</Link>
+                    </li>
+                    <li>
+                        <Link to="/destination">Destination</Link>
+                    </li>
 
+                    <li>
+                        <Link to="/blog">Blog</Link>
+                    </li>
+                    <li>
+                        <Link to="/contracts">Contracts</Link>
+                    </li>
+                    {
+                        travelInformation.isSignedIn ?
+                            <li>
+                                <Link to="/login">
+                                    <button onClick={handleSignOut} className="btn-login">Log Out</button>
+                                </Link>
+
+                            </li>
+                            :
+                            <li>
+                                <Link to="/login">
+                                    <button className="btn-login">Login</button>
+                                </Link>
+                            </li>
+                    }
+                    <li className="nav-item nav-person">{travelInformation.displayName}</li>
+                </ul>
+            </nav>
 
             <div className="login-container">
+
 
                 <form onSubmit={handleSubmit}>
                     {newUser ?

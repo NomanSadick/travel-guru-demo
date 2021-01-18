@@ -12,13 +12,19 @@ import DetailsPlace from './Components/DetailsPlace/DetailsPlace';
 import { createContext, useState } from 'react';
 import Login from './Components/Login/Login';
 import HotelBooking from './Components/HotelBooking/HotelBooking';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 
 
 export const travelContext = createContext()
 
 function App() {
 
-  const [travelInformation, setTravelInformation] = useState()
+  const [travelInformation, setTravelInformation] = useState({
+    isSignedIn: false,
+    displayName: ""
+  });
+  console.log(travelInformation)
+
 
   return (
     <travelContext.Provider value={[travelInformation, setTravelInformation]}>
@@ -32,9 +38,9 @@ function App() {
           <Route path="/login">
             <Login></Login>
           </Route>
-          <Route path="/booking">
+          <PrivateRoute path="/booking">
             <HotelBooking></HotelBooking>
-          </Route>
+          </PrivateRoute>
           <Route path="/">
             <Header></Header>
           </Route>

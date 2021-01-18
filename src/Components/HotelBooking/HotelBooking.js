@@ -28,9 +28,6 @@ const HotelBooking = () => {
                     </div>
 
                 )}
-            <div className="google-map">
-                <h3>This is Google Map</h3>
-            </div>
 
 
         </div>

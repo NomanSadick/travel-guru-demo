@@ -14,8 +14,10 @@ import { travelContext } from '../../App';
 import Navber from '../Navber/Navber';
 
 
+
 const Header = () => {
     const [travelInformation, setTravelInformation] = useContext(travelContext)
+    console.log(travelInformation);
     return (
 
         <Container>

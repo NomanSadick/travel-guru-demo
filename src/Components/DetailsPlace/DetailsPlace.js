@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import './DetailsPlace.css'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { travelContext } from '../../App';
 import Navber from '../Navber/Navber';
 import { Container } from 'react-bootstrap';
@@ -41,7 +41,10 @@ const DetailsPlace = () => {
                                     defaultValue="2020-12-10" InputLabelProps={{ shrink: true, }} />
                             </div>
                         </div>
-                        <button className="detail-btn">Start Booking</button>
+                        <Link to="/booking">
+                            <button className="detail-btn">Start Booking</button>
+                        </Link>
+                        
                     </form>
                 </div>
 
